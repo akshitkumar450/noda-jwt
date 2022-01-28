@@ -30,7 +30,7 @@ authSchema.pre("save", async function (next) {
 
 // run after doc saved to db
 authSchema.post("save", function (doc, next) {
-  console.log("new user created", doc);
+  // console.log("new user created", doc);
   next();
 });
 
