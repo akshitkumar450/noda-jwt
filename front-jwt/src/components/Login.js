@@ -6,10 +6,16 @@ function Login() {
   const [password, setPassword] = useState("");
   const login = async (e) => {
     e.preventDefault();
-    const data = await axios.post("http://localhost:3000/signup", {
-      email,
-      password,
-    });
+    try {
+      const data = await axios.post("http://localhost:3000/login", {
+        email,
+        password,
+      });
+    } catch (err) {
+      alert(err.response.data.message);
+    }
+    setEmail("");
+    setPassword("");
   };
   return (
     <div>

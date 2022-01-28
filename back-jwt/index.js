@@ -4,6 +4,10 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 app.use(cors());
 
+// for using cookies
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
+
 const dotenv = require("dotenv");
 // path to env file
 dotenv.config({

@@ -1,4 +1,8 @@
 const Auth = require("../model/authModel");
+const cookieParser = require("cookie-parser");
+const express = require("express");
+const app = express();
+app.use(cookieParser());
 
 const handleError = (err) => {
   return {
@@ -36,9 +40,38 @@ const postSignup = async (req, res) => {
   }
 };
 
+// setting the cookie
+
+const setCookie = (req, res) => {
+  // this value will be stored in the browser
+  // setting a cookie
+
+  // res.setHeader("set-cookie", "newsuer=true");
+  // res.send("cookie set");
+
+  // using 3rd party package
+  // is already present then it will update else will create a new cookie
+  res.cookie("name", "nina");
+  res.cookie("newuser", true, {
+    maxAge: 1000 * 60 * 60 * 24, //expires in 1 day (time in ms)
+    // secure: true, //for https,
+    // httpOnly: true, // can't be accessed by javascript in browser
+  });
+  res.send("cookie set");
+};
+
+// reading the cookie
+const getCookie = (req, res) => {
+  const cookies = req.cookies;
+  // console.log(cookies);
+  res.send(cookies);
+};
+
 module.exports = {
   getLogin,
   postLogin,
   getSignup,
   postSignup,
+  setCookie,
+  getCookie,
 };

@@ -14,6 +14,8 @@ function Signup() {
     } catch (err) {
       alert(err.response.data.message);
     }
+    setEmail("");
+    setPassword("");
   };
 
   return (
